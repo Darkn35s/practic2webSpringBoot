@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Записи</h1>
+    <div th:each="item : ${items}" class="alert alert-info mt-2" >
+        <h3 th:text = "${item.title}"/>
+        <h3 th:text = "${item.fullTask}"/>
+        <h3 th:text = "${item.priority}"/>
+        <h3 th:text = "${item.type}"/>
+        <a th:href="'/formredactor/'+${item.id}+'/edit'" class="btn btn-warning">Редактировать</a>
+        <form th:action="'/formredactor/'+${item.id}+'/delete'" method="post">
+            <button class="btn btn-warning" type="submit">Удалить</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
