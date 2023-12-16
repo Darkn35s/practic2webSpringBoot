@@ -1,0 +1,32 @@
+---
+
+services:
+  app:
+    image: spring-web-app:local
+    container_name: springapp
+    build: ./
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgresqldb
+
+
+
+  postgresqldb:
+    image: postgres
+    container_name: psql
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=practic2db
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./pgdata:/var/lib/postgresql2/data
+      - ./initsql/:/docker-entrypoint-initdb.d
+volumes:
+  db-data:
+    driver: local
+
+
+
